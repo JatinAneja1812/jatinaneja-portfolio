@@ -143,7 +143,7 @@ export const templateConfig: TemplateConfig = {
     links: [
       {
         label: "Resume",
-        url: "https://example.com/Jatin-Aneja-Resume.pdf" // TODO: replace with your real hosted resume URL
+        url: "src/assets/Jatin-CV.pdf" 
       },
       {
         label: "LinkedIn",
