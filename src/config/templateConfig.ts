@@ -315,7 +315,7 @@ export const templateConfig: TemplateConfig = {
         title: "CFS Tracker · Mobile App",
         organization: "University Project",
         organizationUrl: "",
-        images: ["src/assets/cfstracker.png"], // put your project image here
+        images: ["src/assets/cfs.jpeg"], // put your project image here
         summary:
           "Mobile application designed to support people with chronic fatigue syndrome (CFS) by tracking key health signals over time.",
         highlights: [
