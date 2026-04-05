@@ -1,158 +1,59 @@
-export interface ExternalLink {
-  label: string;
-  url: string;
-}
 
-export interface AbilityItem {
-  label: string;
-  value: number;
-}
-
-export interface TimelineItem {
-  id: string;
-  date?: string;
-  title: string;
-  organization: string;
-  organizationUrl?: string;
-  icon?: string;
-  images?: string[];
-  summary: string;
-  highlights?: string[];
-  links?: ExternalLink[];
-}
-
-export interface BlogPost {
-  slug: string;
-  title: string;
-  excerpt: string;
-  publishedAt: string;
-  coverImage: {
-    url: string;
-  };
-  content: {
-    markdown: string;
-  };
-}
-
-export interface TemplateConfig {
-  site: {
-    title: string;
-    footerName: string;
-    footerTaglineDesktop: string;
-    footerTaglineMobile: string;
-  };
-  profile: {
-    heading: string;
-    intro: string;
-    intro2: string;
-    toolkit: {
-      languages: string[];
-      frameworks: string[];
-      data: string[];
-      systems: string[];
-    };
-    whatIDo: string[];
-    currentFocus: string;
-    spokenLanguages: {
-      english: string;
-      hindi: string;
-      spanish: string;
-    };
-  };
-  contact: {
-    email: string;
-    links: ExternalLink[];
-  };
-  newsletter: {
-    title: string;
-    description: string;
-    placeholder: string;
-    ctaLabel: string;
-    successLabel: string;
-  };
-  abilities: {
-    title: string;
-    items: AbilityItem[];
-  };
-  timeline: {
-    experience: TimelineItem[];
-    education: TimelineItem[];
-    certificates: TimelineItem[];
-    projects: TimelineItem[];
-  };
-  blog: {
-    posts: BlogPost[];
-  };
-}
+import type { TemplateConfig } from "./templateTypes";
+import { loadTestingDotnetApisMarkdown } from "../components/blog/BlogContent/load-testing-dotnet-api";
+import { fromUniversityToProductionMarkdown } from "../components/blog/BlogContent/from-university-to-production";
 
 export const templateConfig: TemplateConfig = {
   site: {
     title: "Jatin Aneja · Software Engineer",
     footerName: "Jatin Aneja",
-    footerTaglineDesktop: "✨Building clean, modern digital experiences with code and creativity 🛠️✨",
-    footerTaglineMobile: "Scalable, secure systems"
+    footerTaglineDesktop:
+      "✨Building clean, modern digital experiences with code and creativity 🛠️✨",
+    footerTaglineMobile: "Scalable, secure systems",
   },
   profile: {
     heading: "About",
-    intro: "I’m a software engineer specialising in full‑stack development with .NET Core and React, delivering scalable, secure and user‑centric systems across both monolithic and microservices architectures. I focus on writing clean, maintainable C# and JavaScript, building modern web applications and Electron‑based desktop apps that are reliable and easy to evolve.",
-    intro2: "I’m passionate about creating efficient, scalable solutions with clear, well‑structured code, and about sharing knowledge and supporting others so teams can deliver at a consistently high standard.",
+    intro:
+      "I’m a software engineer specialising in full‑stack development with .NET Core and React, delivering scalable, secure and user‑centric systems across both monolithic and microservices architectures. I focus on writing clean, maintainable C# and JavaScript, building modern web applications and Electron‑based desktop apps that are reliable and easy to evolve.",
+    intro2:
+      "I’m passionate about creating efficient, scalable solutions with clear, well‑structured code, and about sharing knowledge and supporting others so teams can deliver at a consistently high standard.",
     toolkit: {
-      languages: [
-        "C#",
-        "Java",
-        "Python",
-        "JavaScript",
-        "PowerShell"
-      ],
-      frameworks: [
-        ".NET Core",
-        "React JS",
-        "Android (Jetpack Compose)"
-      ], 
-      data: [
-        "MySQL",
-        "Firebase",
-        "MongoDB",
-        "PostgreSQL"
-      ],
-      systems: [
-        "VS & VS Code",
-        "Postman",
-        "Azure DevOps",
-        "Grafana k6",
-      ]
+      languages: ["C#", "Java", "Python", "JavaScript", "PowerShell"],
+      frameworks: [".NET Core", "React JS", "Android (Jetpack Compose)"],
+      data: ["MySQL", "Firebase", "MongoDB", "PostgreSQL"],
+      systems: ["VS & VS Code", "Postman", "Azure DevOps", "Grafana k6"],
     },
     spokenLanguages: {
       english: "Fluent",
       hindi: "Native",
-      spanish: "Basic"
+      spanish: "Basic",
     },
-  whatIDo: [
-    "Lead end‑to‑end delivery of .NET Core and React applications, from requirements and architecture through to production release.",
-    "Design and implement scalable, secure, maintainable solutions across both monolithic and microservices‑based systems.",
-    "Embed performance monitoring and load/stress testing with Grafana k6, and drive CI/CD and DevOps practices using Azure DevOps.",
-    "Harden applications with secure‑by‑default patterns, threat‑aware design and applied cybersecurity practices.",
-    "Explore and integrate AI/ML capabilities into web applications, from prototypes through to production‑ready features.",
-  ],
-  currentFocus:
-    "Advancing my expertise in AI and machine learning, with a focus on building ML-powered applications and integrating these capabilities into reliable, scalable, cloud-native solutions using secure code best practices.",
+    whatIDo: [
+      "Lead end‑to‑end delivery of .NET Core and React applications, from requirements and architecture through to production release.",
+      "Design and implement scalable, secure, maintainable solutions across both monolithic and microservices‑based systems.",
+      "Embed performance monitoring and load/stress testing with Grafana k6, and drive CI/CD and DevOps practices using Azure DevOps.",
+      "Harden applications with secure‑by‑default patterns, threat‑aware design and applied cybersecurity practices.",
+      "Explore and integrate AI/ML capabilities into web applications, from prototypes through to production‑ready features.",
+    ],
+    currentFocus:
+      "Advancing my expertise in AI and machine learning, with a focus on building ML-powered applications and integrating these capabilities into reliable, scalable, cloud-native solutions using secure code best practices.",
   },
   contact: {
     email: "jatinaneja2000@outlook.com",
     links: [
       {
         label: "Resume",
-        url: "src/assets/Jatin-CV.pdf" 
+        url: "src/assets/Jatin-CV.pdf",
       },
       {
         label: "LinkedIn",
-        url: "https://www.linkedin.com/in/jatin-aneja-b931651a3"
+        url: "https://www.linkedin.com/in/jatin-aneja-b931651a3",
       },
       {
         label: "GitHub",
-        url: "https://github.com/JatinAneja1812"
-      }
-    ]
+        url: "https://github.com/JatinAneja1812",
+      },
+    ],
   },
   newsletter: {
     title: "Stay in the Loop",
@@ -160,11 +61,11 @@ export const templateConfig: TemplateConfig = {
       "Occasional updates on .NET, React, load testing with k6, and lessons learned from building reliable systems in production.",
     placeholder: "Email",
     ctaLabel: "Subscribe",
-    successLabel: "Subscribed"
+    successLabel: "Subscribed",
   },
   abilities: {
-  title: "Hobbies & Strengths",
-  items: [
+    title: "Hobbies & Strengths",
+    items: [
       { label: "Deep Work & Focused Problem‑Solving", value: 70 },
       { label: "Continuous Learning (AI/ML, New Tools)", value: 80 },
       { label: "Systematic Debugging", value: 86 },
@@ -176,53 +77,53 @@ export const templateConfig: TemplateConfig = {
   },
   timeline: {
     experience: [
-    {
-      id: "exp-1",
-      date: "2025 - Present",
-      title: "Software Engineer",
-      organization: "TEKGEM UK Ltd (Sedgefield)",
-      icon: "@assets/tekgem-logo.png",
-      organizationUrl: "https://www.tekgem.co.uk",
-      summary:
-        "Leading full-cycle delivery of secure, cloud-ready .NET Core and React applications for critical infrastructure and enterprise clients.",
-      highlights: [
-        "Own end-to-end development from requirements discovery and solution design through implementation, automated testing and deployment.",
-        "Architect and deliver scalable, maintainable services across monolithic and microservices environments with a strong security-first mindset.",
-        "Drive performance, reliability and observability using k6, Grafana and structured logging to catch issues early and keep SLAs on track.",
-        "Mentor junior developers, review code and champion clean architecture, testing discipline and modern engineering practices within the team."
-      ]
-    },
-    {
-      id: "exp-2",
-      date: "2024 - 2025",
-      title: "Graduate Software Developer",
-      organization: "TEKGEM UK Ltd (Sedgefield)",
-      organizationUrl: "https://www.tekgem.co.uk",
-      icon: "@assets/tekgem-logo.png",
-      summary:
-        "Strengthened core engineering skills while taking on increasing ownership of production features in .NET Core and React solutions.",
-      highlights: [
-        "Implemented new features and enhancements across the stack, from REST APIs and data access layers to responsive React UIs.",
-        "Collaborated with senior engineers on design decisions, code reviews and refactoring to improve performance and maintainability.",
-        "Helped evolve CI/CD pipelines and release processes, contributing to smoother, more reliable deployments for customer environments."
-      ]
-    },
-    {
-      id: "exp-3",
-      date: "2022 - 2024",
-      title: "Student Software Developer (Part‑Time)",
-      organization: "TEKGEM UK Ltd (Sedgefield)",
-      icon: "@assets/tekgem-logo.png",
-      organizationUrl: "https://www.tekgem.co.uk",
-      summary:
-        "Gained hands-on experience building and maintaining enterprise-grade systems alongside my Computer Science degree.",
-      highlights: [
-        "Contributed to real client projects, fixing bugs, implementing smaller features and learning production-grade patterns and tooling.",
-        "Worked closely with cross‑functional teams to understand requirements and deliver changes aligned with business priorities.",
-        "Balanced part‑time work with full‑time study, demonstrating strong time management, ownership and commitment to continuous learning."
-      ]
-    }
-  ],
+      {
+        id: "exp-1",
+        date: "2025 - Present",
+        title: "Software Engineer",
+        organization: "TEKGEM UK Ltd (Sedgefield)",
+        icon: "@assets/tekgem-logo.png",
+        organizationUrl: "https://www.tekgem.co.uk",
+        summary:
+          "Leading full-cycle delivery of secure, cloud-ready .NET Core and React applications for critical infrastructure and enterprise clients.",
+        highlights: [
+          "Own end-to-end development from requirements discovery and solution design through implementation, automated testing and deployment.",
+          "Architect and deliver scalable, maintainable services across monolithic and microservices environments with a strong security-first mindset.",
+          "Drive performance, reliability and observability using k6, Grafana and structured logging to catch issues early and keep SLAs on track.",
+          "Mentor junior developers, review code and champion clean architecture, testing discipline and modern engineering practices within the team.",
+        ],
+      },
+      {
+        id: "exp-2",
+        date: "2024 - 2025",
+        title: "Graduate Software Developer",
+        organization: "TEKGEM UK Ltd (Sedgefield)",
+        organizationUrl: "https://www.tekgem.co.uk",
+        icon: "@assets/tekgem-logo.png",
+        summary:
+          "Strengthened core engineering skills while taking on increasing ownership of production features in .NET Core and React solutions.",
+        highlights: [
+          "Implemented new features and enhancements across the stack, from REST APIs and data access layers to responsive React UIs.",
+          "Collaborated with senior engineers on design decisions, code reviews and refactoring to improve performance and maintainability.",
+          "Helped evolve CI/CD pipelines and release processes, contributing to smoother, more reliable deployments for customer environments.",
+        ],
+      },
+      {
+        id: "exp-3",
+        date: "2022 - 2024",
+        title: "Student Software Developer (Part‑Time)",
+        organization: "TEKGEM UK Ltd (Sedgefield)",
+        icon: "@assets/tekgem-logo.png",
+        organizationUrl: "https://www.tekgem.co.uk",
+        summary:
+          "Gained hands-on experience building and maintaining enterprise-grade systems alongside my Computer Science degree.",
+        highlights: [
+          "Contributed to real client projects, fixing bugs, implementing smaller features and learning production-grade patterns and tooling.",
+          "Worked closely with cross‑functional teams to understand requirements and deliver changes aligned with business priorities.",
+          "Balanced part‑time work with full‑time study, demonstrating strong time management, ownership and commitment to continuous learning.",
+        ],
+      },
+    ],
     education: [
       {
         id: "edu-1",
@@ -234,8 +135,8 @@ export const templateConfig: TemplateConfig = {
           "Coursework in computing projects, immersive technology, applied machine learning, IoT, system design patterns, algorithms and cybersecurity.",
         highlights: [
           "Completed a computing project involving immersive technology and systems design.",
-          "Developed strong foundations in algorithms, data structures and networks and security."
-        ]
+          "Developed strong foundations in algorithms, data structures and networks and security.",
+        ],
       },
       {
         id: "edu-2",
@@ -243,39 +144,39 @@ export const templateConfig: TemplateConfig = {
         title: "Applied Cybersecurity – Summer University",
         organization: "Teesside University",
         summary:
-          "Intensive summer programme focused on applied cybersecurity concepts and practical defensive techniques."
-      }
+          "Intensive summer programme focused on applied cybersecurity concepts and practical defensive techniques.",
+      },
     ],
     certificates: [
-  {
-    id: "cred-1",
-    date: "2022 - 2023",
-    title: "Web Development Technical Director",
-    organization: "Google Developer Student Club · Teesside University",
-    summary:
-      "Led the technical direction of the GDSC web track, planning and delivering hands‑on React / .NET workshops and mentoring students on modern web development practices.",
-    highlights: [
-      "Organised and ran regular coding sessions covering frontend architectures, API integration and deployment workflows.",
-      "Designed events and hackathons that grew the active developer community on campus.",
-      "Strengthened public speaking and leadership while coordinating content and logistics alongside studies."
-    ],
-    images: ["src/assets/GDSCCert.png"], // put your cert image here
-    links: []
-  },
-  {
-    id: "cred-2",
-    date: "2021 - 2022",
-    title: "Course Representative · BSc Computer Science",
-    organization: "Teesside University",
-    summary:
-      "Elected to represent Computer Science students, collecting feedback and working with academics to improve teaching and assessment.",
-    highlights: [
-      "Facilitated student feedback and presented key themes to programme leaders.",
-      "Helped shape changes to module delivery and communication based on student experience.",
-      "Built stakeholder communication and negotiation skills now used with product owners and clients."
-    ],
-    links: []
-  }
+      {
+        id: "cred-1",
+        date: "2022 - 2023",
+        title: "Web Development Technical Director",
+        organization: "Google Developer Student Club · Teesside University",
+        summary:
+          "Led the technical direction of the GDSC web track, planning and delivering hands‑on React / .NET workshops and mentoring students on modern web development practices.",
+        highlights: [
+          "Organised and ran regular coding sessions covering frontend architectures, API integration and deployment workflows.",
+          "Designed events and hackathons that grew the active developer community on campus.",
+          "Strengthened public speaking and leadership while coordinating content and logistics alongside studies.",
+        ],
+        images: ["src/assets/GDSCCert.png"], // put your cert image here
+        links: [],
+      },
+      {
+        id: "cred-2",
+        date: "2021 - 2022",
+        title: "Course Representative · BSc Computer Science",
+        organization: "Teesside University",
+        summary:
+          "Elected to represent Computer Science students, collecting feedback and working with academics to improve teaching and assessment.",
+        highlights: [
+          "Facilitated student feedback and presented key themes to programme leaders.",
+          "Helped shape changes to module delivery and communication based on student experience.",
+          "Built stakeholder communication and negotiation skills now used with product owners and clients.",
+        ],
+        links: [],
+      },
     ],
     projects: [
       {
@@ -289,12 +190,15 @@ export const templateConfig: TemplateConfig = {
           "Implemented visual animations for algorithms such as linear search, merge sort, quick sort, Dijkstra and A*, mapping each algorithm step to a clear UI state so learners can follow the logic.",
           "Designed an architecture that separates algorithm logic from rendering, making it easy to plug in new algorithms or change visual themes without rewriting core code.",
           "Built an integrated chat and file‑sharing panel so students can discuss runs, share test data and collaborate on problem‑solving directly inside the app.",
-          "Focused on UX details such as speed controls, pausing, stepping forwards/backwards and colour‑coding to make complex behaviour approachable for non‑experts."
+          "Focused on UX details such as speed controls, pausing, stepping forwards/backwards and colour‑coding to make complex behaviour approachable for non‑experts.",
         ],
         images: ["src/assets/algovis.png"], // put your project image here
         links: [
-          { label: "View on GitHub", url: "https://github.com/JatinAneja1812/E-AlgoViz.Backend" }
-        ]
+          {
+            label: "View on GitHub",
+            url: "https://github.com/JatinAneja1812/E-AlgoViz.Backend",
+          },
+        ],
       },
       {
         id: "proj-2",
@@ -308,11 +212,14 @@ export const templateConfig: TemplateConfig = {
           "Integrated device sensors to capture metrics such as heart rate and breathing patterns, then stored structured time‑series data for later analysis.",
           "Modelled user profiles and daily logs so patients can correlate symptoms with activity levels, sleep and other lifestyle factors.",
           "Designed low‑friction input flows and calm visual design specifically to reduce cognitive load for users already dealing with fatigue.",
-          "Explored basic analytics and visualisations (trends and anomalies) to help patients and clinicians spot potential triggers and progress over time."
+          "Explored basic analytics and visualisations (trends and anomalies) to help patients and clinicians spot potential triggers and progress over time.",
         ],
         links: [
-          { label: "View on GitHub", url: "https://github.com/JatinAneja2000/CFSTracker" }
-        ]
+          {
+            label: "View on GitHub",
+            url: "https://github.com/JatinAneja2000/CFSTracker",
+          },
+        ],
       },
       {
         id: "proj-3",
@@ -325,12 +232,15 @@ export const templateConfig: TemplateConfig = {
           "Developed a .NET Core backend with an Azure‑hosted SQL database, exposing REST APIs for products, orders, inventory and reporting.",
           "Implemented a React frontend using reusable components for dashboards, forms and tables, ensuring good UX on both desktop and mobile.",
           "Added basic unit tests around core business logic and API endpoints to reduce regression risk as features evolved.",
-          "Set up simple deployment scripts and configuration for different environments, practising CI/CD concepts and environment‑specific settings."
+          "Set up simple deployment scripts and configuration for different environments, practising CI/CD concepts and environment‑specific settings.",
         ],
         images: ["src/assets/thamcofoods.jpeg"], // put your project image here
         links: [
-          { label: "View on GitHub", url: "https://github.com/JatinAneja1812/thamco_staff_frontendapp" }
-        ]
+          {
+            label: "View on GitHub",
+            url: "https://github.com/JatinAneja1812/thamco_staff_frontendapp",
+          },
+        ],
       },
       {
         id: "proj-4",
@@ -343,12 +253,15 @@ export const templateConfig: TemplateConfig = {
           "Built an ASP.NET Core MVC application allowing staff to create events, assign venues and configure menus with validation and error handling.",
           "Designed relational models for events, venues, menus, guests and staff, enforcing realistic business rules via constraints and server‑side checks.",
           "Implemented full CRUD workflows with filtered lists, search and detail views to make day‑to‑day admin tasks faster and less error‑prone.",
-          "Focused on clean separation between controllers, views and data access to keep the codebase maintainable and easy to extend."
+          "Focused on clean separation between controllers, views and data access to keep the codebase maintainable and easy to extend.",
         ],
         images: ["src/assets/thamco.jpeg"], // put your project image here
         links: [
-          { label: "View on GitHub", url: "https://github.com/JatinAneja1812/ThAmCoICA" }
-        ]
+          {
+            label: "View on GitHub",
+            url: "https://github.com/JatinAneja1812/ThAmCoICA",
+          },
+        ],
       },
       {
         id: "proj-5",
@@ -362,15 +275,15 @@ export const templateConfig: TemplateConfig = {
           "Started as a console‑based game and refactored into a proper Java GUI, separating core game logic from presentation to keep the codebase modular and testable.",
           "Applied Strategy, Singleton and Factory patterns to model behaviours such as card effects, game state management and object creation in a clean, extensible way.",
           "Implemented a built‑in chat feature using WebSockets and Java threading so players can communicate in real time while a match is in progress.",
-          "Managed game state, turns and networking concurrently, ensuring the UI stays responsive while handling messages and game events in the background."
+          "Managed game state, turns and networking concurrently, ensuring the UI stays responsive while handling messages and game events in the background.",
         ],
         images: ["src/assets/pocketbeast.jpeg"], // put your project image here
         links: [
           {
             label: "View on GitHub",
-            url: "https://github.com/JatinAneja2000/PocketBeast"
-          }
-        ]
+            url: "https://github.com/JatinAneja2000/PocketBeast",
+          },
+        ],
       },
       {
         id: "proj-6",
@@ -384,17 +297,17 @@ export const templateConfig: TemplateConfig = {
           "Designed and implemented a Java GUI to manage furniture items, including adding, updating and viewing products in a structured way.",
           "Separated UI components from core logic so the application remains maintainable and easier to extend with new features.",
           "Practised event‑driven programming, wiring up form inputs, buttons and validation to drive changes in the underlying data model.",
-          "Paid attention to basic UX details such as clear labelling, layouts and feedback to make the tool usable for non‑technical users."
+          "Paid attention to basic UX details such as clear labelling, layouts and feedback to make the tool usable for non‑technical users.",
         ],
         images: ["src/assets/furniture.jpeg"], // put your project image here
         links: [
           {
             label: "View on GitHub",
-            url: "https://github.com/JatinAneja2000/FurnitureMain"
-          }
-        ]
-      }
-    ]
+            url: "https://github.com/JatinAneja2000/FurnitureMain",
+          },
+        ],
+      },
+    ],
   },
   blog: {
     posts: [
@@ -405,26 +318,24 @@ export const templateConfig: TemplateConfig = {
           "Practical notes from integrating k6 and Grafana into everyday development to keep services fast, observable and calm in production.",
         publishedAt: "2026-02-04",
         coverImage: {
-          url: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80"
+          url: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80",
         },
         content: {
-          markdown:
-            "# Load Testing .NET APIs with k6 and Grafana\n\nHow I use k6 and Grafana to understand API performance, catch regressions early, and keep systems reliable for real users."
-        }
+          markdown: loadTestingDotnetApisMarkdown,
+        },
       },
       {
         slug: "from-university-to-production",
         title: "From University Projects to Production Systems",
         excerpt:
-          "Lessons learned moving from academic projects to shipping and maintaining real‑world software at TEKGEM.",
-        publishedAt: "2025-11-21",
+          "Reflections on the shift from assignments and capstones to long‑lived systems that customers depend on every day.",
+        publishedAt: "2026-02-04",
         coverImage: {
-          url: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=80"
+          url: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80",
         },
         content: {
-          markdown:
-            "# From University Projects to Production Systems\n\nReflections on the shift from assignments and capstones to long‑lived systems that customers depend on every day."
-        }
+          markdown: fromUniversityToProductionMarkdown,
+        },
       },
       {
         slug: "visualizing-algorithms",
@@ -433,13 +344,13 @@ export const templateConfig: TemplateConfig = {
           "Why I built an Algorithms Visualizer desktop app and how visual tools can make complex algorithms easier to grasp.",
         publishedAt: "2025-09-15",
         coverImage: {
-          url: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1400&q=80"
+          url: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1400&q=80",
         },
         content: {
           markdown:
-            "# Visualizing Algorithms for Better Learning\n\nA look at the Algorithms Visualizer app I built to help people understand algorithms like Merge Sort, Dijkstra and A* through animation and collaboration."
-        }
-      }
-    ]
-  }
+            "# Visualizing Algorithms for Better Learning\n\nA look at the Algorithms Visualizer app I built to help people understand algorithms like Merge Sort, Dijkstra and A* through animation and collaboration.",
+        },
+      },
+    ],
+  },
 };
