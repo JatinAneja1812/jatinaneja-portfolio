@@ -44,30 +44,37 @@ onMounted(() => {
         <div class="mt-1 border-b border-neutral-200 w-full"></div>
       </header>
 
-      <div class="grid grid-cols-12 gap-2.5 items-center">
+      <!-- responsive rows -->
+      <div class="space-y-2.5">
         <template
           v-for="(item, index) in templateConfig.abilities.items"
           :key="item.label"
         >
-          <div class="col-span-8 progress-label text-neutral-900">
-            {{ item.label }}
-          </div>
-          <div class="col-span-4">
-            <div
-              class="w-full h-2.5 rounded-full bg-neutral-200 overflow-hidden relative"
-            >
-              <!-- light scanline background (stays light) -->
-              <div class="absolute inset-0 bg-neutral-200"></div>
-
-              <!-- black progress bar -->
-              <div
-                class="relative h-full rounded-full bg-black shadow-[0_0_10px_rgba(0,0,0,0.7)] transition-[width] duration-900 ease-out will-change-[width]"
-                :style="{ width: animatedValues[index] + '%' }"
+          <div class="grid grid-cols-12 gap-1 items-center">
+            <!-- label: full width on mobile, 8/12 from md -->
+            <div class="col-span-12 md:col-span-8 min-w-0">
+              <span
+                class="block text-neutral-900 progress-label text-sm md:text-base truncate"
               >
-                <!-- white animated highlight on top of the black bar -->
+                {{ item.label }}
+              </span>
+            </div>
+
+            <!-- bar: full width on mobile, 4/12 from md -->
+            <div class="col-span-12 md:col-span-4 mt-1 md:mt-0">
+              <div
+                class="w-full h-2.5 rounded-full bg-neutral-200 overflow-hidden relative"
+              >
+                <div class="absolute inset-0 bg-neutral-200"></div>
+
                 <div
-                  class="absolute inset-0 pointer-events-none animate-scanline"
-                ></div>
+                  class="relative h-full rounded-full bg-black shadow-[0_0_10px_rgba(0,0,0,0.7)] transition-[width] duration-900 ease-out will-change-[width]"
+                  :style="{ width: animatedValues[index] + '%' }"
+                >
+                  <div
+                    class="absolute inset-0 pointer-events-none animate-scanline"
+                  ></div>
+                </div>
               </div>
             </div>
           </div>
@@ -99,14 +106,14 @@ onMounted(() => {
 .animate-scanline {
   background: linear-gradient(
     300deg,
-    /* was 120deg → 120 + 180 = 300 */ transparent 0%,
+    transparent 0%,
     rgba(255, 255, 255, 0.9) 100%,
     transparent 40%,
     transparent 100%
   );
   mask-image: linear-gradient(
     330deg,
-    /* was 150deg → 150 + 180 = 330 */ transparent 0%,
+    transparent 0%,
     black 20%,
     transparent 50%,
     transparent 100%

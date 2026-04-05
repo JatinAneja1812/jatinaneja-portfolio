@@ -13,14 +13,13 @@ import Picture from "@/assets/profileImg.png";
 
     <div class="hero-inner">
       <div class="hero-avatar-wrap">
-        <img
-          :src="Picture"
-          alt="Avatar"
-          class="w-80 h-50 object-cover mb-0 mt-10 pt-10 grayscale"
-        />
+        <img :src="Picture" alt="Avatar" class="hero-avatar" />
       </div>
+
       <div class="hero-title">JATIN ANEJA</div>
+
       <div class="hero-subtitle">SOFTWARE ENGINEER | FULL-STACK DEVELOPER</div>
+
       <div class="hero-meta">
         <span class="hero-meta-item">Middlesbrough, UK</span>
         <span class="hero-meta-item">EST: 2022</span>
@@ -36,10 +35,40 @@ import Picture from "@/assets/profileImg.png";
   overflow: hidden;
 }
 
+/* make inner layout responsive: center on mobile, slightly tighter padding on larger */
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center horizontally */
+  justify-content: flex-end;
+  gap: 0.35rem;
+  padding: 1.25rem 0.75rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .hero-inner {
+    padding: 1.5rem 1.25rem 1.25rem;
+  }
+}
+
+/* avatar responsive sizing */
 .hero-avatar-wrap {
   position: relative;
   display: inline-block;
   align-self: center;
+}
+
+.hero-avatar {
+  display: block;
+  width: clamp(10rem, 48vw, 18rem);
+  height: clamp(10rem, 52vw, 23rem);
+  object-fit: cover;
+  margin-top: 3rem;
+  padding-top: 0.25rem;
+  filter: grayscale(100%);
 }
 
 /* distorted 4-sided “triangle-ish” shape behind avatar */
@@ -47,20 +76,20 @@ import Picture from "@/assets/profileImg.png";
   content: "";
   position: absolute;
   inset: 0;
-  top: 4.75rem;
-  left: 0.9rem;
-  right: -1.4rem;
-  bottom: -0.75rem;
+  top: 4.1rem;
+  left: 0.7rem;
+  right: -1.2rem;
+  bottom: -0.7rem;
   background: #020617;
   clip-path: polygon(5% 15%, 95% 5%, 85% 100%, 0% 85%);
   z-index: -1;
   opacity: 0.9;
   box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.45),
-    0 0 20px rgba(15, 23, 42, 0.6);
+    0 10px 22px rgba(0, 0, 0, 0.38),
+    0 0 18px rgba(15, 23, 42, 0.55);
 }
 
-/* compact, top-left status */
+/* status */
 .hero-status {
   position: absolute;
   top: 0.5rem;
@@ -99,8 +128,7 @@ import Picture from "@/assets/profileImg.png";
   line-height: 1;
 }
 
-/* existing styles below… */
-
+/* background */
 .hero-card::before {
   content: "";
   position: absolute;
@@ -111,28 +139,10 @@ import Picture from "@/assets/profileImg.png";
     linear-gradient(140deg, #fbfaf4 0%, #dfe8e5 100%);
 }
 
-.hero-inner {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 0.35rem;
-  padding: 1rem;
-}
-
-.hero-label {
-  font-family: "FKGN";
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #1f4b51;
-}
-
+/* title + glitch */
 .hero-title {
   font-family: "Audiowide", system-ui, sans-serif;
-  font-size: clamp(1.6rem, 2.4vw, 2.4rem);
+  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -141,6 +151,7 @@ import Picture from "@/assets/profileImg.png";
   display: inline-block;
   text-align: center;
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+  margin-top: 0.35rem;
 }
 
 .hero-title::before,
@@ -195,20 +206,23 @@ import Picture from "@/assets/profileImg.png";
   }
 }
 
+/* subtitle */
 .hero-subtitle {
   font-family: "SDDystopian", system-ui, sans-serif;
-  font-size: 0.7rem;
+  font-size: clamp(0.6rem, 1.2vw, 0.75rem);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #4b5563;
   text-align: center;
+  margin-top: 0.1rem;
 }
 
+/* meta */
 .hero-meta {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   margin-top: 0.35rem;
   font-family: "SDDystopian", system-ui, sans-serif;
   font-size: 0.6rem;

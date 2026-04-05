@@ -46,16 +46,19 @@ const linkItems = computed(() =>
 </script>
 
 <template>
-  <div class="card rounded-md" style="border: 1px solid black">
-    <div class="card-body pt-3 px-0">
-      <header class="mb-3 px-3">
+  <div
+    class="card rounded-md min-h-[280px] md:min-h-[320px]"
+    style="border: 1px solid black"
+  >
+    <div class="card-body pt-3 px-0 flex flex-col h-full">
+      <header class="mb-3 px-3 shrink-0">
         <h1 class="card-title text-neutral-900">Links</h1>
         <div class="mt-1 border-b border-neutral-200 w-full"></div>
       </header>
 
-      <!-- desktop / >=900px: vertical icon column -->
+      <!-- desktop icons >=768px: centered -->
       <div
-        class="hidden [@media(min-width:900px)]:flex flex-col items-center gap-3 mx-3 mt-0 mb-0"
+        class="hidden md:flex flex-col items-center justify-center flex-1 gap-3 mx-3 min-h-0"
       >
         <!-- email icon -->
         <button
@@ -85,18 +88,15 @@ const linkItems = computed(() =>
               class="icon-svg"
             />
           </span>
-          <!-- tooltip with name: Download CV, Open LinkedIn, Open GitHub, etc. -->
         </button>
       </div>
 
-      <!-- mobile / <900px: full-width labeled buttons (labels already explain) -->
-      <div
-        class="flex flex-col gap-3 mx-3 mt-0 mb-0 [@media(min-width:900px)]:hidden"
-      >
+      <!-- mobile buttons <768px: top-aligned, no extra top space -->
+      <div class="md:hidden flex flex-col gap-3 mx-2 sm:mx-2 flex-1 pt-2">
         <!-- email -->
         <button
           @click="openEmail()"
-          class="w-full inline-flex items-center justify-between px-3 py-2 rounded-md border border-neutral-800 bg-neutral-900 text-neutral-50 text-sm hover:bg-neutral-800 hover:border-neutral-50 transition-colors duration-150 group"
+          class="w-full max-w-[85%] mx-auto inline-flex items-center justify-between px-3 py-2 rounded-md border border-neutral-800 bg-neutral-900 text-neutral-50 text-sm hover:bg-neutral-800 hover:border-neutral-50 transition-colors duration-150 group min-h-[48px]"
         >
           <div class="flex items-center gap-3">
             <PhEnvelopeSimple :size="20" weight="regular" />
@@ -109,10 +109,11 @@ const linkItems = computed(() =>
           v-for="link in linkItems"
           :key="link.label"
           @click="openLink(link.url)"
-          class="w-full inline-flex items-center justify-between px-3 py-2 rounded-md border border-neutral-800 bg-neutral-900 text-neutral-50 text-sm hover:bg-neutral-800 hover:border-neutral-50 transition-colors duration-150 group"
+          class="w-full max-w-[85%] mx-auto inline-flex items-center justify-between px-3 py-2 rounded-md border border-neutral-800 bg-neutral-900 text-neutral-50 text-sm hover:bg-neutral-800 hover:border-neutral-50 transition-colors duration-150 group min-h-[48px]"
         >
           <div class="flex items-center gap-3">
             <component :is="link.icon" :size="20" weight="regular" />
+            <span class="truncate">{{ link.label }}</span>
           </div>
         </button>
       </div>
@@ -121,6 +122,14 @@ const linkItems = computed(() =>
 </template>
 
 <style scoped>
+/* Mobile button container: extra narrow padding below 550px */
+@media (max-width: 549px) {
+  .card-body > div:last-child {
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+  }
+}
+
 .card-title {
   font-family: "PPEN";
   font-weight: 400;
@@ -135,8 +144,12 @@ const linkItems = computed(() =>
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.9rem;
-  height: 2.9rem;
+  width: 2.7rem;
+  height: 2.7rem;
+  min-width: 2.7rem;
+  min-height: 2.7rem;
+  max-width: 3.2rem;
+  max-height: 3.2rem;
   border-radius: 999px;
   border: 1px solid #020617;
   background:
@@ -146,6 +159,9 @@ const linkItems = computed(() =>
   box-shadow:
     0 0 0 1px rgba(15, 23, 42, 0.9),
     0 8px 14px rgba(15, 23, 42, 0.35);
+  transition:
+    width 0.2s,
+    height 0.2s;
 }
 
 .icon-btn-inner {
@@ -157,11 +173,10 @@ const linkItems = computed(() =>
   height: 100%;
   border-radius: 999px;
   overflow: hidden;
-  radius: 999px;
+  border-radius: 999px;
 }
 
 /* improved tooltip bubble: centered below icon */
-
 .icon-tooltip {
   pointer-events: auto;
   position: absolute;
@@ -189,7 +204,7 @@ const linkItems = computed(() =>
 .icon-btn.group:hover .icon-tooltip {
   opacity: 1;
   transform: translateX(-50%) translateY(16px);
-  radius: 999px;
+  border-radius: 999px;
 }
 
 /* hover highlight for desktop icons */

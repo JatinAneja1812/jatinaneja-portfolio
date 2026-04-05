@@ -2,13 +2,13 @@
 import { templateConfig } from "@/config/templateConfig";
 
 const languages = [
-  { name: "English", level: 100, label: "Fluent" },
+  { name: "English", level: 90, label: "Fluent" },
   { name: "Hindi", level: 100, label: "Native" },
   { name: "Spanish", level: 20, label: "Basic" },
 ];
 
-const radius = 28;
-const strokeWidth = 6;
+const radius = 24;
+const strokeWidth = 5;
 const normalizedRadius = radius - strokeWidth / 2;
 const circumference = 2 * Math.PI * normalizedRadius;
 
@@ -19,11 +19,12 @@ function getStrokeDashoffset(level: number) {
 
 <template>
   <div class="card rounded-md" style="border: 1px solid black">
-    <div class="card-body pt-4 pb-4 px-0">
-      <header class="mb-3 px-3">
+    <div class="card-body pt-4 pb-4 px-3 sm:px-4">
+      <header class="mb-3 px-1 sm:px-3">
         <h1 class="card-title text-neutral-900">Known Languages</h1>
         <div class="mt-1 border-b border-neutral-200 w-full"></div>
       </header>
+
       <div class="lang-list">
         <div v-for="lang in languages" :key="lang.name" class="lang-item group">
           <svg :height="radius * 2 + 4" :width="radius * 2 + 4">
@@ -57,6 +58,7 @@ function getStrokeDashoffset(level: number) {
               {{ lang.level }}%
             </text>
           </svg>
+
           <div class="lang-labels">
             <div class="lang-name">{{ lang.name }}</div>
             <div class="lang-desc">{{ lang.label }}</div>
@@ -84,42 +86,74 @@ function getStrokeDashoffset(level: number) {
   letter-spacing: 0.08em;
   font-size: 1.1rem;
 }
+
+/* responsive list spacing */
 .lang-list {
   display: flex;
-  flex-direction: row;
-  gap: 1.2rem;
+  flex-wrap: wrap;
+  gap: 0.6rem; /* tighter gap by default for small screens */
   justify-content: center;
 }
+
+/* bigger gap on medium+ screens */
+@media (min-width: 768px) {
+  .lang-list {
+    gap: 1.2rem;
+  }
+}
+
 .lang-item {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1.1rem;
+  gap: 0.7rem; /* smaller internal gap for small */
   cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* slightly larger inner gap on bigger screens */
+@media (min-width: 768px) {
+  .lang-item {
+    gap: 1rem;
+  }
+}
+
+/* only on very narrow screens, allow wrapping into two columns */
+@media (max-width: 420px) {
+  .lang-item {
+    flex: 1 1 48%;
+    justify-content: flex-start;
+  }
+}
+
 .lang-item:hover svg {
-  transform: scale(1.1);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1.08);
 }
+
 .lang-progress {
   transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .lang-percent {
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   fill: #111;
   user-select: none;
 }
+
 .lang-labels {
   text-align: left;
 }
+
 .lang-name {
   font-weight: 600;
   color: #222;
+  font-size: 0.85rem;
 }
+
 .lang-desc {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: #666;
 }
 </style>

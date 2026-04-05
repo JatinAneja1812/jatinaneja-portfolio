@@ -116,11 +116,10 @@ export const templateConfig: TemplateConfig = {
         "PostgreSQL"
       ],
       systems: [
-        "Visual Studio",
-        "Visual Studio Code",
+        "VS & VS Code",
+        "Postman",
         "Azure DevOps",
         "Grafana k6",
-        "Git",
       ]
     },
     spokenLanguages: {
@@ -166,11 +165,11 @@ export const templateConfig: TemplateConfig = {
   abilities: {
   title: "Hobbies & Strengths",
   items: [
-      { label: "Deep Work & Focused Problem‑Solving", value: 87 },
+      { label: "Deep Work & Focused Problem‑Solving", value: 70 },
       { label: "Continuous Learning (AI/ML, New Tools)", value: 80 },
       { label: "Systematic Debugging", value: 86 },
       { label: "Clean Code & Pragmatic Architecture", value: 74 },
-      { label: "Fitness & Discipline (Swimming, Gym)", value: 90 },
+      { label: "Fitness & Discipline (Swimming, Gym)", value: 75 },
       { label: "Creative Outlets (Sketching, UI-Designing)", value: 82 },
       { label: "Technical Leadership & Mentoring", value: 80 },
     ],
@@ -221,19 +220,6 @@ export const templateConfig: TemplateConfig = {
         "Contributed to real client projects, fixing bugs, implementing smaller features and learning production-grade patterns and tooling.",
         "Worked closely with cross‑functional teams to understand requirements and deliver changes aligned with business priorities.",
         "Balanced part‑time work with full‑time study, demonstrating strong time management, ownership and commitment to continuous learning."
-      ]
-    },
-    {
-      id: "exp-4",
-      date: "2020 - 2022",
-      title: "Kitchen Assistant / Head Chef (Part‑Time)",
-      organization: "Roshie’s Diners & Takeaways (Middlesbrough)",
-      summary:
-        "Worked part‑time alongside my Computer Science degree, progressing from Kitchen Assistant to managing day‑to‑day kitchen operations.",
-      highlights: [
-        "Coordinated orders, prep and service during busy periods while maintaining high standards of quality and hygiene.",
-        "Led a small team on shift, delegating tasks and solving problems quickly under time pressure.",
-        "Developed strong discipline, attention to detail and customer‑first thinking that I now apply to delivering reliable software."
       ]
     }
   ],

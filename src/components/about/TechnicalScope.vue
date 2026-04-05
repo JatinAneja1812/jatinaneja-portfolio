@@ -19,20 +19,24 @@ const toolkitSections = [
         <h1 class="card-title text-neutral-900">Technical Scope</h1>
         <div class="mt-1 border-b border-neutral-200 w-full"></div>
       </header>
-      <ul class="grid gap-2 mx-4 py-0 text-sm text-neutral-800">
-        <li
+
+      <div class="space-y-2.5 mx-4 py-1 text-sm text-neutral-800">
+        <div
           v-for="section in toolkitSections"
           :key="section.title"
-          class="flex flex-wrap gap-1 items-baseline transition-colors duration-150 hover:text-neutral-950"
+          class="flex flex-wrap items-baseline gap-1"
         >
-          <span class="font-semibold text-neutral-950">
+          <!-- title (keeps its own space, doesn’t wrap) -->
+          <span class="font-semibold text-neutral-950 whitespace-nowrap mr-1">
             {{ section.title }}:
           </span>
-          <span class="opacity-90">
+
+          <!-- values, inline with title, wrap only when needed -->
+          <span class="opacity-90 break-words">
             {{ section.values.join(", ") }}
           </span>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
