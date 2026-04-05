@@ -40,6 +40,31 @@ const subscribeToNewsletter = async () => {
           <button @click="subscribeToNewsletter" class="btn rounded-md btn-outline btn-primary">
             {{ subscribeLabel }}
           </button>
+
+           <!-- Technical scope -->
+      <section class="mt-4">
+        <h2
+          class="font-ppen font-ppen-bold text-xs uppercase tracking-[0.12em] text-neutral-600 mb-2 scope-glitch"
+          data-text="Technical Scope"
+        >
+          Technical Scope
+        </h2>
+        <ul class="grid gap-1.5 text-sm text-neutral-800">
+          <li
+            v-for="section in toolkitSections"
+            :key="section.title"
+            class="flex flex-wrap gap-1 items-baseline transition-colors duration-150 hover:text-neutral-950"
+          >
+            <span class="font-semibold text-neutral-950">
+              {{ section.title }}:
+            </span>
+            <span class="opacity-90">
+              {{ section.values.join(", ") }}
+            </span>
+          </li>
+        </ul>
+      </section>
+
         </div>
       </div>
     </div>
