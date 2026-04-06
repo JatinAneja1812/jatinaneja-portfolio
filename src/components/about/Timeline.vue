@@ -1,10 +1,30 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, reactive, watch, nextTick } from "vue";
 import { templateConfig } from "@/config/templateConfig";
 
-type TabKey = "experience" | "education" | "certificates";
+// 1. Fixed the type to include all 4 keys
+type TabKey = "experience" | "education" | "certificates" | "projects";
 
 const activeTab = ref<TabKey>("experience");
+
+// 2. Refs for auto-scrolling logic
+const tabRefs = ref<Record<string, HTMLElement>>({});
+const setTabRef = (el: any, key: string) => {
+  if (el) tabRefs.value[key] = el;
+};
+
+// 3. Watch for tab changes to trigger the scroll
+watch(activeTab, async (newTab) => {
+  await nextTick(); // Wait for the "tab-expanded" transition to finish
+  const activeEl = tabRefs.value[newTab];
+  if (activeEl) {
+    activeEl.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }
+});
 
 const tabMeta: { key: TabKey; label: string }[] = [
   { key: "experience", label: "Experience" },
@@ -15,8 +35,6 @@ const tabMeta: { key: TabKey; label: string }[] = [
 
 const activeItems = computed(() => templateConfig.timeline[activeTab.value]);
 
-// Flipping logic: use a Set to track flipped cards by id
-import { reactive } from "vue";
 const flippedCards = reactive(new Set());
 function toggleFlip(id: string | number) {
   if (flippedCards.has(id)) {
@@ -30,10 +48,14 @@ function toggleFlip(id: string | number) {
 <template>
   <div class="card rounded-md" style="border: 1px solid black">
     <div class="card-body pt-3 px-4">
-      <div role="tablist" class="tabs tabs-boxed">
+      <div
+        role="tablist"
+        class="tabs tabs-boxed flex-nowrap overflow-x-auto no-scrollbar"
+      >
         <button
           v-for="tab in tabMeta"
           :key="tab.key"
+          :ref="(el) => setTabRef(el, tab.key)"
           role="tab"
           :class="{
             tab: true,
@@ -86,7 +108,6 @@ function toggleFlip(id: string | number) {
 
               <p class="mt-2 ml-1">{{ item.summary }}</p>
 
-              <!-- render highlights -->
               <ul
                 v-if="item.highlights && item.highlights.length"
                 class="list-disc list-outside ml-5 mt-2"
@@ -100,7 +121,6 @@ function toggleFlip(id: string | number) {
                 </li>
               </ul>
 
-              <!-- render certificate / timeline images -->
               <div
                 v-if="item.images && item.images.length"
                 class="mt-3 ml-1 flex flex-wrap gap-2"
@@ -114,7 +134,6 @@ function toggleFlip(id: string | number) {
                 />
               </div>
 
-              <!-- render links -->
               <div
                 v-if="item.links && item.links.length"
                 class="mt-3 ml-1 flex flex-wrap gap-2"
@@ -126,16 +145,15 @@ function toggleFlip(id: string | number) {
                   target="_blank"
                   rel="noopener noreferrer"
                   class="btn btn-xs"
+                  >{{ link.label }}</a
                 >
-                  {{ link.label }}
-                </a>
               </div>
             </div>
-
             <hr />
           </li>
         </ul>
       </div>
+
       <div v-else>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           <div
@@ -150,7 +168,6 @@ function toggleFlip(id: string | number) {
               class="flip-card-inner"
               :class="{ flipped: flippedCards.has(item.id) }"
             >
-              <!-- Front Side -->
               <div class="flip-card-front relative overflow-hidden">
                 <div
                   v-if="item.images && item.images.length"
@@ -192,7 +209,6 @@ function toggleFlip(id: string | number) {
                   </div>
                 </div>
               </div>
-              <!-- Back Side -->
               <div class="flip-card-back">
                 <div class="flex flex-col justify-center h-full p-4">
                   <div class="font-black text-lg text-center mb-1">
@@ -201,7 +217,6 @@ function toggleFlip(id: string | number) {
                   <div class="text-sm text-left text-gray-500 mb-2 mt-3">
                     Details:
                   </div>
-
                   <ul
                     v-if="item.highlights && item.highlights.length"
                     class="list-disc list-inside mb-2 text-xs text-neutral-700 text-left mx-auto max-w-xs"
@@ -221,9 +236,8 @@ function toggleFlip(id: string | number) {
                       target="_blank"
                       rel="noopener noreferrer"
                       class="btn btn-xs"
+                      >{{ link.label }}</a
                     >
-                      {{ link.label }}
-                    </a>
                   </div>
                 </div>
               </div>
@@ -236,37 +250,53 @@ function toggleFlip(id: string | number) {
 </template>
 
 <style scoped>
+/* 5. Custom styles for scrolling and hiding scrollbar */
+.tabs {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  -webkit-overflow-scrolling: touch; /* Momentum scroll for iOS */
+}
+.tabs::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
 .tab {
   font-family: "PPEN";
   font-weight: 400;
-  font-style: normal;
   font-size: 0.95rem;
-  flex: 1;
-  transition:
-    flex 0.35s ease-in-out,
-    border-radius 0.35s ease-in-out;
+  flex: 0 0 auto; /* Crucial: Prevents shrinking so scrolling works */
+  min-width: 110px; /* Ensures text is never squashed */
+  white-space: nowrap;
+  transition: flex 0.35s ease-in-out;
 }
 
 .tab-active {
-  flex: 3;
+  flex: 0 0 auto; /* Keep it consistent on mobile */
+  font-weight: 700;
+}
+
+/* On Desktop, restore the expanding behavior */
+@media (min-width: 768px) {
+  .tab {
+    flex: 1;
+    min-width: 0;
+  }
+  .tab-active {
+    flex: 3;
+  }
 }
 
 .font-black {
   font-family: "PPEN";
   font-weight: 700;
-  font-style: normal;
   font-size: 1.25rem;
 }
-
 .font-light {
   font-family: "PPEN";
   font-weight: 400;
-  font-style: normal;
   font-size: 1rem;
 }
-</style>
-<style scoped>
-/* Flipping Card Styles for Projects Tab */
+
 .flip-card {
   perspective: 1200px;
   min-height: 370px;
@@ -278,10 +308,7 @@ function toggleFlip(id: string | number) {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 370px;
-  transition:
-    transform 0.7s cubic-bezier(0.4, 2, 0.6, 1),
-    box-shadow 0.3s;
+  transition: transform 0.7s cubic-bezier(0.4, 2, 0.6, 1);
   transform-style: preserve-3d;
   border-radius: 1rem;
 }
@@ -293,7 +320,6 @@ function toggleFlip(id: string | number) {
   position: absolute;
   width: 100%;
   height: 100%;
-  min-height: 370px;
   backface-visibility: hidden;
   border-radius: 1rem;
   display: flex;
@@ -302,13 +328,12 @@ function toggleFlip(id: string | number) {
   align-items: center;
   background: #fff;
   box-shadow: 0 2px 8px 0 rgba(80, 80, 120, 0.1);
+  border: 1.5px solid #e5e7eb;
 }
 .flip-card-front {
   z-index: 2;
-  border: 1.5px solid #e5e7eb;
 }
 .flip-card-back {
   transform: rotateY(180deg);
-  border: 1.5px solid #e5e7eb;
 }
 </style>
