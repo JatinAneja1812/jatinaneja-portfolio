@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/jatinaneja-portfolio/' : '/',
+  base: mode === 'production' ? '/jatinaneja-portfolio/about' : '/',
   plugins: [vue()],
   resolve: {
     alias: {
