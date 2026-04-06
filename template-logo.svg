@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Template logo">
+  <rect x="6" y="6" width="52" height="52" rx="10" fill="#d7e8ea" />
+  <circle cx="32" cy="28" r="12" fill="#2e565d" />
+  <rect x="22" y="42" width="20" height="6" rx="3" fill="#2e565d" />
+</svg>
