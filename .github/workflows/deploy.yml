@@ -1,4 +1,4 @@
-name: Deploy Portfolio to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -28,13 +28,11 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
-        # or your build command
+        run: npm run build          # builds into ./dist
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ./dist   # or ./build, etc.
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist       # dist contents -> ROOT of gh-pages
+          publish_branch: gh-pages
