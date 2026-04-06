@@ -72,16 +72,21 @@ onUnmounted(() => {
       data-animation-order="4"
     />
     <div
-      class="w-full sm:col-span-full lg:col-span-4 min-h-[13vh] "
+      class="w-full sm:col-span-full lg:col-span-4 min-h-[13vh]"
       data-animation-order="4"
     >
-      <TechnicalScope data-animation-order="5" class="w-full mb-1 animate-fade-in delay-400" />
-      <Languages data-animation-order="5"  class="w-full animate-fade-in delay-400"/>
+      <TechnicalScope
+        data-animation-order="5"
+        class="w-full mb-1 animate-fade-in delay-400"
+      />
+      <Languages
+        data-animation-order="5"
+        class="w-full animate-fade-in delay-400"
+      />
     </div>
 
     <Timeline
       class="w-full col-span-full animate-fade-in delay-500"
-      1
       data-animation-order="6"
     />
   </div>
