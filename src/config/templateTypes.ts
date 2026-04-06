@@ -64,13 +64,6 @@ export interface TemplateConfig {
     email: string;
     links: ExternalLink[];
   };
-  newsletter: {
-    title: string;
-    description: string;
-    placeholder: string;
-    ctaLabel: string;
-    successLabel: string;
-  };
   abilities: {
     title: string;
     items: AbilityItem[];

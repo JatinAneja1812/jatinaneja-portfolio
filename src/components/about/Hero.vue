@@ -100,7 +100,7 @@ import Picture from "@/assets/profileImg.png";
   padding: 0.12rem 0.4rem;
   border-radius: 999px;
   background: rgba(240, 253, 250, 0.9);
-  border: 1px solid rgba(34, 197, 94, 0.6);
+  border: 1px solid var(--fallback-in, oklch(var(--in) / 1));
   font-family: "SDDystopian", system-ui, sans-serif;
   font-size: 0.55rem;
   letter-spacing: 0.16em;
@@ -115,7 +115,7 @@ import Picture from "@/assets/profileImg.png";
   background: radial-gradient(
     circle at 30% 30%,
     #bbf7d0 0%,
-    #22c55e 40%,
+    var(--fallback-in,oklch(var(--in)/1)) 40%,
     #166534 100%
   );
   box-shadow:

@@ -55,14 +55,6 @@ export const templateConfig: TemplateConfig = {
       },
     ],
   },
-  newsletter: {
-    title: "Stay in the Loop",
-    description:
-      "Occasional updates on .NET, React, load testing with k6, and lessons learned from building reliable systems in production.",
-    placeholder: "Email",
-    ctaLabel: "Subscribe",
-    successLabel: "Subscribed",
-  },
   abilities: {
     title: "Hobbies & Strengths",
     items: [
@@ -318,7 +310,7 @@ export const templateConfig: TemplateConfig = {
           "Practical notes from integrating k6 and Grafana into everyday development to keep services fast, observable and calm in production.",
         publishedAt: "2026-02-04",
         coverImage: {
-          url: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80",
+          url: "/src/assets/loadtest.png",
         },
         content: {
           markdown: loadTestingDotnetApisMarkdown,
@@ -331,26 +323,26 @@ export const templateConfig: TemplateConfig = {
           "Reflections on the shift from assignments and capstones to long‑lived systems that customers depend on every day.",
         publishedAt: "2026-02-04",
         coverImage: {
-          url: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80",
+          url: "/src/assets/universitytoproduction.png",
         },
         content: {
           markdown: fromUniversityToProductionMarkdown,
         },
       },
-      {
-        slug: "visualizing-algorithms",
-        title: "Visualizing Algorithms for Better Learning",
-        excerpt:
-          "Why I built an Algorithms Visualizer desktop app and how visual tools can make complex algorithms easier to grasp.",
-        publishedAt: "2025-09-15",
-        coverImage: {
-          url: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1400&q=80",
-        },
-        content: {
-          markdown:
-            "# Visualizing Algorithms for Better Learning\n\nA look at the Algorithms Visualizer app I built to help people understand algorithms like Merge Sort, Dijkstra and A* through animation and collaboration.",
-        },
-      },
+      // {
+      //   slug: "visualizing-algorithms",
+      //   title: "Visualizing Algorithms for Better Learning",
+      //   excerpt:
+      //     "Why I built an Algorithms Visualizer desktop app and how visual tools can make complex algorithms easier to grasp.",
+      //   publishedAt: "2025-09-15",
+      //   coverImage: {
+      //     url: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1400&q=80",
+      //   },
+      //   content: {
+      //     markdown:
+      //       "# Visualizing Algorithms for Better Learning\n\nA look at the Algorithms Visualizer app I built to help people understand algorithms like Merge Sort, Dijkstra and A* through animation and collaboration.",
+      //   },
+      // },
     ],
   },
 };
