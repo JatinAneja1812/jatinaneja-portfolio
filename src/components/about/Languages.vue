@@ -25,9 +25,13 @@ function getStrokeDashoffset(level: number) {
         <div class="mt-1 border-b border-neutral-200 w-full"></div>
       </header>
 
-      <div class="lang-list">
+      <div class="lang-list no-scrollbar">
         <div v-for="lang in languages" :key="lang.name" class="lang-item group">
-          <svg :height="radius * 2 + 4" :width="radius * 2 + 4">
+          <svg
+            :height="radius * 2 + 4"
+            :width="radius * 2 + 4"
+            class="shrink-0"
+          >
             <circle
               :stroke="'#bdbdbd'"
               fill="transparent"
@@ -73,32 +77,33 @@ function getStrokeDashoffset(level: number) {
 .card-title {
   font-family: "PPEN";
   font-weight: 400;
-  font-style: normal;
   font-size: 1.3rem;
   margin-top: 5px;
 }
 
-.lang-title {
-  color: #111;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 1.1rem;
-}
-
-/* responsive list spacing */
+/* 2. Updated lang-list to prevent wrapping */
 .lang-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem; /* tighter gap by default for small screens */
-  justify-content: center;
+  flex-wrap: nowrap; /* Forces one line */
+  overflow-x: auto; /* Allows scrolling if screen is too narrow */
+  gap: 1rem;
+  justify-content: flex-start;
+  padding-bottom: 4px;
 }
 
-/* bigger gap on medium+ screens */
+/* Hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @media (min-width: 768px) {
   .lang-list {
-    gap: 1.2rem;
+    justify-content: center;
+    gap: 2rem;
   }
 }
 
@@ -106,29 +111,14 @@ function getStrokeDashoffset(level: number) {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.7rem; /* smaller internal gap for small */
+  gap: 0.5rem;
+  flex: 0 0 auto; /* Prevents items from shrinking */
   cursor: pointer;
-  transform-origin: center;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s ease;
 }
 
-/* slightly larger inner gap on bigger screens */
-@media (min-width: 768px) {
-  .lang-item {
-    gap: 1rem;
-  }
-}
-
-/* only on very narrow screens, allow wrapping into two columns */
-@media (max-width: 420px) {
-  .lang-item {
-    flex: 1 1 48%;
-    justify-content: flex-start;
-  }
-}
-
-.lang-item:hover svg {
-  transform: scale(1.08);
+.lang-item:hover {
+  transform: translateY(-2px);
 }
 
 .lang-progress {
@@ -139,11 +129,11 @@ function getStrokeDashoffset(level: number) {
   font-weight: 600;
   font-size: 0.8rem;
   fill: #111;
-  user-select: none;
 }
 
 .lang-labels {
   text-align: left;
+  white-space: nowrap; /* Keeps text on one line */
 }
 
 .lang-name {

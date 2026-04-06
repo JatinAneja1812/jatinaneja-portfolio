@@ -20,7 +20,7 @@ export const templateConfig: TemplateConfig = {
     footerName: "Jatin Aneja",
     footerTaglineDesktop:
       "✨Building clean, modern digital experiences with code and creativity 🛠️✨",
-    footerTaglineMobile: "Scalable, secure systems",
+    footerTaglineMobile: "Building the Future, One Pixel at a time 👨‍💻 ✨",
   },
   profile: {
     heading: "About",
