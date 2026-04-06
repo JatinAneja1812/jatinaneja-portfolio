@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
+// import Home from '../views/Home.vue';
 import About from '../views/About.vue';
-import Quotes from '../views/Quotes.vue';
+// import Quotes from '../views/Quotes.vue';
 import Blog from '../views/Blog.vue';
-import Projects from '../views/Projects.vue';
+// import Projects from '../views/Projects.vue';
 import PostDetail from '../components/blog/[slug].vue';
 const routes = [
-    { path: '/', component: Home },
+    { path: '/', component: About },
     { path: '/about', component: About },
-    { path: '/quotes', component: Quotes },
+    // { path: '/quotes', component: Quotes },
     { path: '/blog', component: Blog },
-    { path: '/projects', component: Projects },
+    // { path: '/projects', component: Projects },
     {
         // The dynamic slug route
         path: '/blog/:slug',

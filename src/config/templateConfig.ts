@@ -2,6 +2,17 @@
 import type { TemplateConfig } from "./templateTypes";
 import { loadTestingDotnetApisMarkdown } from "../components/blog/BlogContent/load-testing-dotnet-api";
 import { fromUniversityToProductionMarkdown } from "../components/blog/BlogContent/from-university-to-production";
+import jatincv from "../assets/Jatin-CV.pdf";
+import gdsccert from "../assets/GDSCCert.png";
+import algovis from "../assets/algovis.png";
+import cfs from "../assets/cfs.jpeg";
+import thamcofoods from "../assets/thamcofoods.jpeg";
+import thamco from "../assets/thamco.jpeg";
+import pocketbeast from "../assets/pocketbeast.jpeg";
+import furniture from "../assets/furniture.jpeg";
+import loadtest from "../assets/loadtest.png";
+import universitytoproduction from "../assets/universitytoproduction.png";
+
 
 export const templateConfig: TemplateConfig = {
   site: {
@@ -43,7 +54,7 @@ export const templateConfig: TemplateConfig = {
     links: [
       {
         label: "Resume",
-        url: "src/assets/Jatin-CV.pdf",
+        url: jatincv,
       },
       {
         label: "LinkedIn",
@@ -91,7 +102,6 @@ export const templateConfig: TemplateConfig = {
         title: "Graduate Software Developer",
         organization: "TEKGEM UK Ltd (Sedgefield)",
         organizationUrl: "https://www.tekgem.co.uk",
-        icon: "@assets/tekgem-logo.png",
         summary:
           "Strengthened core engineering skills while taking on increasing ownership of production features in .NET Core and React solutions.",
         highlights: [
@@ -105,7 +115,6 @@ export const templateConfig: TemplateConfig = {
         date: "2022 - 2024",
         title: "Student Software Developer (Part‑Time)",
         organization: "TEKGEM UK Ltd (Sedgefield)",
-        icon: "@assets/tekgem-logo.png",
         organizationUrl: "https://www.tekgem.co.uk",
         summary:
           "Gained hands-on experience building and maintaining enterprise-grade systems alongside my Computer Science degree.",
@@ -152,7 +161,7 @@ export const templateConfig: TemplateConfig = {
           "Designed events and hackathons that grew the active developer community on campus.",
           "Strengthened public speaking and leadership while coordinating content and logistics alongside studies.",
         ],
-        images: ["src/assets/GDSCCert.png"], // put your cert image here
+        images: [gdsccert], // put your cert image here
         links: [],
       },
       {
@@ -184,7 +193,7 @@ export const templateConfig: TemplateConfig = {
           "Built an integrated chat and file‑sharing panel so students can discuss runs, share test data and collaborate on problem‑solving directly inside the app.",
           "Focused on UX details such as speed controls, pausing, stepping forwards/backwards and colour‑coding to make complex behaviour approachable for non‑experts.",
         ],
-        images: ["src/assets/algovis.png"], // put your project image here
+        images: [algovis], // put your project image here
         links: [
           {
             label: "View on GitHub",
@@ -197,7 +206,7 @@ export const templateConfig: TemplateConfig = {
         title: "CFS Tracker · Mobile App",
         organization: "University Project",
         organizationUrl: "",
-        images: ["src/assets/cfs.jpeg"], // put your project image here
+        images: [cfs], // put your project image here
         summary:
           "Mobile application designed to support people with chronic fatigue syndrome (CFS) by tracking key health signals over time.",
         highlights: [
@@ -226,7 +235,7 @@ export const templateConfig: TemplateConfig = {
           "Added basic unit tests around core business logic and API endpoints to reduce regression risk as features evolved.",
           "Set up simple deployment scripts and configuration for different environments, practising CI/CD concepts and environment‑specific settings.",
         ],
-        images: ["src/assets/thamcofoods.jpeg"], // put your project image here
+        images: [thamcofoods], // put your project image here
         links: [
           {
             label: "View on GitHub",
@@ -247,7 +256,7 @@ export const templateConfig: TemplateConfig = {
           "Implemented full CRUD workflows with filtered lists, search and detail views to make day‑to‑day admin tasks faster and less error‑prone.",
           "Focused on clean separation between controllers, views and data access to keep the codebase maintainable and easy to extend.",
         ],
-        images: ["src/assets/thamco.jpeg"], // put your project image here
+        images: [thamco], // put your project image here
         links: [
           {
             label: "View on GitHub",
@@ -269,7 +278,7 @@ export const templateConfig: TemplateConfig = {
           "Implemented a built‑in chat feature using WebSockets and Java threading so players can communicate in real time while a match is in progress.",
           "Managed game state, turns and networking concurrently, ensuring the UI stays responsive while handling messages and game events in the background.",
         ],
-        images: ["src/assets/pocketbeast.jpeg"], // put your project image here
+        images: [pocketbeast], // put your project image here
         links: [
           {
             label: "View on GitHub",
@@ -291,7 +300,7 @@ export const templateConfig: TemplateConfig = {
           "Practised event‑driven programming, wiring up form inputs, buttons and validation to drive changes in the underlying data model.",
           "Paid attention to basic UX details such as clear labelling, layouts and feedback to make the tool usable for non‑technical users.",
         ],
-        images: ["src/assets/furniture.jpeg"], // put your project image here
+        images: [furniture], // put your project image here
         links: [
           {
             label: "View on GitHub",
@@ -310,7 +319,7 @@ export const templateConfig: TemplateConfig = {
           "Practical notes from integrating k6 and Grafana into everyday development to keep services fast, observable and calm in production.",
         publishedAt: "2026-02-04",
         coverImage: {
-          url: "/src/assets/loadtest.png",
+          url: loadtest,
         },
         content: {
           markdown: loadTestingDotnetApisMarkdown,
@@ -323,7 +332,7 @@ export const templateConfig: TemplateConfig = {
           "Reflections on the shift from assignments and capstones to long‑lived systems that customers depend on every day.",
         publishedAt: "2026-02-04",
         coverImage: {
-          url: "/src/assets/universitytoproduction.png",
+          url: universitytoproduction,
         },
         content: {
           markdown: fromUniversityToProductionMarkdown,

@@ -4,9 +4,9 @@
     <div class="flex-1">
       <div style="max-height: min-content">
         <div className="navbar-start" class="tooltip tooltip-right">
-          <router-link to="/about">
+          <router-link to="/">
             <img
-              src="/src/assets/wolf-icon.png"
+              src="@/assets/wolf-icon.png"
               alt="Template logo"
               class="w-10 h-10"
             />

@@ -2,23 +2,23 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 
-export default defineConfig({
-  base: '/jatinaneja-portfolio/',   // 👈 important
+export default defineConfig(({ mode }) => ({
+  base: mode === 'production' ? '/jatinaneja-portfolio/' : '/',
   plugins: [vue()],
   resolve: {
     alias: {
-      "@": resolve(__dirname, 'src'),  // Use path.resolve for absolute path
+      '@': resolve(__dirname, 'src'),
     },
   },
   build: {
-    target: 'es2022'  // Supports destructuring natively
+    target: 'es2022',
   },
   esbuild: {
-    target: 'es2022'
+    target: 'es2022',
   },
   optimizeDeps: {
     esbuildOptions: {
-      target: 'es2022'
-    }
-  }
-})
+      target: 'es2022',
+    },
+  },
+}))
