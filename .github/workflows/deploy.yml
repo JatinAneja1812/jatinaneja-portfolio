@@ -8,6 +8,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     permissions:
       contents: write
       pages: write
@@ -27,12 +29,12 @@ jobs:
 
       - name: Build
         run: npm run build
-        # or: yarn build, or another build command for your stack
+        # or your build command
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist     # or ./build, ./public, etc.
+          path: ./dist   # or ./build, etc.
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
