@@ -10,7 +10,7 @@ import thamcofoods from "../assets/thamcofoods.jpeg";
 import thamco from "../assets/thamco.jpeg";
 import pocketbeast from "../assets/pocketbeast.jpeg";
 import furniture from "../assets/furniture.jpeg";
-import loadtest from "../assets/loadtest.png";
+import loadtest from "../assets/loadTest.png";
 import universitytoproduction from "../assets/universitytoproduction.png";
 
 
