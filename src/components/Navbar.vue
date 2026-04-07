@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <div class="flex-none">
+    <!-- <div class="flex-none">
       <div style="max-height: min-content">
         <div className="navbar-end mr-1" class="tooltip tooltip-right">
           <title>Blogs</title>
@@ -33,7 +33,7 @@
           </router-link>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <style scoped>
