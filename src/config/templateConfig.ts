@@ -86,7 +86,7 @@ export const templateConfig: TemplateConfig = {
         title: "Software Engineer",
         organization: "TEKGEM UK Ltd (Sedgefield)",
         icon: "@assets/tekgem-logo.png",
-        organizationUrl: "https://www.tekgem.co.uk",
+        organizationUrl: "https://www.tekgem.co",
         summary:
           "Leading full-cycle delivery of secure, cloud-ready .NET Core and React applications for critical infrastructure and enterprise clients.",
         highlights: [
@@ -101,7 +101,7 @@ export const templateConfig: TemplateConfig = {
         date: "2024 - 2025",
         title: "Graduate Software Developer",
         organization: "TEKGEM UK Ltd (Sedgefield)",
-        organizationUrl: "https://www.tekgem.co.uk",
+        organizationUrl: "https://www.tekgem.co",
         summary:
           "Strengthened core engineering skills while taking on increasing ownership of production features in .NET Core and React solutions.",
         highlights: [
@@ -115,7 +115,7 @@ export const templateConfig: TemplateConfig = {
         date: "2022 - 2024",
         title: "Student Software Developer (Part‑Time)",
         organization: "TEKGEM UK Ltd (Sedgefield)",
-        organizationUrl: "https://www.tekgem.co.uk",
+        organizationUrl: "https://www.tekgem.co",
         summary:
           "Gained hands-on experience building and maintaining enterprise-grade systems alongside my Computer Science degree.",
         highlights: [

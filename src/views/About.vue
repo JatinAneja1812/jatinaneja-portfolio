@@ -56,11 +56,11 @@ onUnmounted(() => {
     class="my-4 max-w-6xl xl:px-16 grid gap-1 sm:grid-cols-6 lg:grid-cols-9"
   >
     <About
-      class="w-full col-span-full lg:col-span-6 h-[70vh] animate-fade-in"
+      class="w-full col-span-full lg:col-span-6 min-[70vh] animate-fade-in"
       data-animation-order="1"
     />
     <Hero
-      class="w-full col-span-full lg:col-span-3 h-[70vh] hidden lg:block animate-fade-in delay-100"
+      class="w-full col-span-full lg:col-span-3 min-[70vh] hidden lg:block animate-fade-in delay-100"
       data-animation-order="2"
     />
     <Email

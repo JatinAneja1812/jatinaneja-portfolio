@@ -33,13 +33,14 @@ import Picture from "@/assets/profileImg.png";
 .hero-card {
   position: relative;
   overflow: hidden;
+align-items: center;
 }
 
 /* make inner layout responsive: center on mobile, slightly tighter padding on larger */
 .hero-inner {
   position: relative;
   z-index: 1;
-  height: 100%;
+  height: inherit;
   display: flex;
   flex-direction: column;
   align-items: center; /* center horizontally */
@@ -64,10 +65,9 @@ import Picture from "@/assets/profileImg.png";
 .hero-avatar {
   display: block;
   width: clamp(10rem, 48vw, 18rem);
-  height: clamp(10rem, 52vw, 23rem);
+  height: clamp(10rem, 52vw, 25rem);
   object-fit: cover;
-  margin-top: 3rem;
-  padding-top: 0.25rem;
+  padding-top: 0.1rem;
   filter: grayscale(100%);
 }
 
@@ -142,7 +142,7 @@ import Picture from "@/assets/profileImg.png";
 /* title + glitch */
 .hero-title {
   font-family: "Audiowide", system-ui, sans-serif;
-  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+  font-size: clamp(1.8rem, 2.2vw, 2.2rem);
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
