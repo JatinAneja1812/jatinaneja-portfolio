@@ -63,25 +63,29 @@ onUnmounted(() => {
       class="w-full col-span-full lg:col-span-3 min-[70vh] hidden lg:block animate-fade-in delay-100"
       data-animation-order="2"
     />
+     <!-- min-h-[24vh] -->
     <Email
-      class="w-full sm:col-span-2 lg:col-span-1 min-h-[26vh] animate-fade-in delay-200"
+      class="w-full sm:col-span-2 lg:col-span-1 min-h-auto animate-fade-in delay-200"
       data-animation-order="3"
     />
+     <!-- min-h-[24vh] -->
     <Abilities
-      class="w-full sm:col-span-4 lg:col-span-4 min-h-[26vh] animate-fade-in delay-300"
+      class="w-full sm:col-span-4 lg:col-span-4 min-h-auto animate-fade-in delay-300"
       data-animation-order="4"
     />
+
+    <!-- min-h-[13vh] -->
     <div
-      class="w-full sm:col-span-full lg:col-span-4 min-h-[13vh]"
+      class="w-full sm:col-span-full lg:col-span-4 h-auto"
       data-animation-order="4"
     >
       <TechnicalScope
         data-animation-order="5"
-        class="w-full mb-1 animate-fade-in delay-400"
+        class="w-full h-auto mb-1 animate-fade-in delay-400"
       />
       <Languages
         data-animation-order="5"
-        class="w-full animate-fade-in delay-400"
+        class="w-full h-auto animate-fade-in delay-400"
       />
     </div>
 
