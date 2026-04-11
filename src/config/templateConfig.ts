@@ -11,7 +11,7 @@ import thamco from "../assets/thamco.jpeg";
 import pocketbeast from "../assets/pocketbeast.jpeg";
 import furniture from "../assets/furniture.jpeg";
 import loadtest from "../assets/loadTest.png";
-import tsunami from "../assets/tsunami.jpeg";
+import tsunami from "../assets/Tsunami.jpeg";
 
 
 export const templateConfig: TemplateConfig = {
