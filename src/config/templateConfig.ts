@@ -1,7 +1,7 @@
 
 import type { TemplateConfig } from "./templateTypes";
 import { loadTestingDotnetApisMarkdown } from "../components/blog/BlogContent/load-testing-dotnet-api";
-import { fromUniversityToProductionMarkdown } from "../components/blog/BlogContent/from-university-to-production";
+import { silentLettersMarkdown } from "../components/blog/BlogContent/why-english-has-scilent-letters";
 import jatincv from "../assets/Jatin-CV.pdf";
 import gdsccert from "../assets/GDSCCert.png";
 import algovis from "../assets/algovis.png";
@@ -11,7 +11,7 @@ import thamco from "../assets/thamco.jpeg";
 import pocketbeast from "../assets/pocketbeast.jpeg";
 import furniture from "../assets/furniture.jpeg";
 import loadtest from "../assets/loadTest.png";
-import universitytoproduction from "../assets/universitytoproduction.png";
+import tsunami from "../assets/tsunami.jpeg";
 
 
 export const templateConfig: TemplateConfig = {
@@ -313,6 +313,18 @@ export const templateConfig: TemplateConfig = {
   blog: {
     posts: [
       {
+        slug: "why-english-silent-letters",
+        title: "Why English Has So Many Silent Letters", 
+        excerpt: "The history behind k in 'knife', b in 'debt', and why English spelling preserves history over phonetic logic.",
+        publishedAt: "2026-04-11",
+        coverImage: {
+          url: tsunami, // replace with your cover image import/variable
+        },
+        content: {
+          markdown: silentLettersMarkdown,
+        },
+      },
+      {
         slug: "load-testing-dotnet-apis",
         title: "Load Testing .NET APIs with k6 and Grafana",
         excerpt:
@@ -325,19 +337,7 @@ export const templateConfig: TemplateConfig = {
           markdown: loadTestingDotnetApisMarkdown,
         },
       },
-      {
-        slug: "from-university-to-production",
-        title: "From University Projects to Production Systems",
-        excerpt:
-          "Reflections on the shift from assignments and capstones to long‑lived systems that customers depend on every day.",
-        publishedAt: "2026-02-04",
-        coverImage: {
-          url: universitytoproduction,
-        },
-        content: {
-          markdown: fromUniversityToProductionMarkdown,
-        },
-      },
+     
       // {
       //   slug: "visualizing-algorithms",
       //   title: "Visualizing Algorithms for Better Learning",
