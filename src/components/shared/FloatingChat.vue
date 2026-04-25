@@ -44,7 +44,7 @@ Remember your persona:
 - Never say "Jatin Aneja is..." or "He worked at..."
 - Be professional, friendly, and helpful.`;
 
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-lite-preview:generateContent?key=${apiKey}`;
+    const modelCandidates = ['gemini-3.1-flash-lite-preview', 'gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-flash-8b'];
 
     const payload = {
       systemInstruction: {
@@ -64,25 +64,48 @@ Remember your persona:
       ],
     };
 
-    const res = await fetch(apiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+    let res: Response | null = null;
+    let lastErrorText = '';
 
-    if (!res.ok) {
-      const errorText = await res.text();
-      messages.value.push({ role: 'assistant', content: `⚠️ Failed to process your question: ${errorText}` });
-    } else {
-      const data = await res.json();
-      if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-        const reply = data.candidates[0].content.parts[0].text;
-        messages.value.push({ role: 'assistant', content: reply });
-      } else if (data.promptFeedback) {
-        messages.value.push({ role: 'assistant', content: '⚠️ Response blocked by safety filters.' });
-      } else {
-        messages.value.push({ role: 'assistant', content: '⚠️ Unexpected response format.' });
+    for (const model of modelCandidates) {
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      res = await fetch(apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        break;
       }
+
+      const errorText = await res.text();
+      lastErrorText = errorText;
+
+      // If this model is unavailable for this API version, try the next model.
+      if (res.status === 404 && /not found|not supported/i.test(errorText)) {
+        continue;
+      }
+
+      break;
+    }
+
+    if (!res || !res.ok) {
+      messages.value.push({
+        role: 'assistant',
+        content: `⚠️ Failed to process your question. ${lastErrorText || 'No compatible Gemini model was available.'}`,
+      });
+      return;
+    }
+
+    const data = await res.json();
+    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+      const reply = data.candidates[0].content.parts[0].text;
+      messages.value.push({ role: 'assistant', content: reply });
+    } else if (data.promptFeedback) {
+      messages.value.push({ role: 'assistant', content: '⚠️ Response blocked by safety filters.' });
+    } else {
+      messages.value.push({ role: 'assistant', content: '⚠️ Unexpected response format.' });
     }
   } catch (err) {
     console.error('Chat API error:', err);

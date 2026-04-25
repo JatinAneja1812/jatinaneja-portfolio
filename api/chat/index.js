@@ -54,7 +54,11 @@ Remember your persona:
 
     const userMessage = question.trim();
 
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-lite-preview:generateContent?key=${apiKey}`;
+    const modelCandidates = [
+      "gemini-2.0-flash",
+      "gemini-1.5-flash",
+      "gemini-1.5-flash-8b",
+    ];
 
     const payload = {
       systemInstruction: {
@@ -74,18 +78,40 @@ Remember your persona:
       ],
     };
 
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    let response;
+    let lastErrorBody = "";
+    for (const model of modelCandidates) {
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
 
-    if (!response.ok) {
+      if (response.ok) {
+        break;
+      }
+
       const errorBody = await response.text();
+      lastErrorBody = errorBody;
+
+      // If this model is unavailable for this API version, try the next model.
+      if (
+        response.status === 404 &&
+        /not found|not supported/i.test(errorBody)
+      ) {
+        continue;
+      }
+
       console.error("Gemini API error:", errorBody);
       throw new Error(`Gemini API returned status ${response.status}`);
+    }
+
+    if (!response || !response.ok) {
+      console.error("Gemini API error after trying model fallbacks:", lastErrorBody);
+      throw new Error("Gemini API model unavailable for this API key/project.");
     }
 
     const data = await response.json();
