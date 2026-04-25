@@ -19,37 +19,74 @@ async function sendMessage() {
   isTyping.value = true;
 
   try {
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question: text }),
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    if (!apiKey) {
+      messages.value.push({ role: 'assistant', content: '⚠️ VITE_GEMINI_API_KEY is not configured in the environment.' });
+      return;
+    }
+
+    const cvResponse = await fetch('/cv.md');
+    const cvContent = await cvResponse.text();
+
+    const systemInstruction = `You are Jatin Aneja. You are a Software Engineer chatting with a visitor on your personal portfolio website. 
+
+CRITICAL DIRECTIVE: You must speak strictly in the first-person perspective ("I", "my", "me"). You are NOT an AI assistant reading a CV. You ARE Jatin. 
+If asked "Where do you work?", you must answer "I work at TEKGEM", NOT "Jatin works at TEKGEM".
+
+Below is YOUR memory and professional background. Use this information to answer questions about YOURSELF:
+
+<your_background_information>
+${cvContent}
+</your_background_information>
+
+Remember your persona:
+- Always use "I", "me", "my".
+- Never say "Jatin Aneja is..." or "He worked at..."
+- Be professional, friendly, and helpful.`;
+
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-lite-preview:generateContent?key=${apiKey}`;
+
+    const payload = {
+      systemInstruction: {
+        parts: [{ text: systemInstruction }],
+      },
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: text }],
+        },
+      ],
+      safetySettings: [
+        {
+          category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+          threshold: "BLOCK_MEDIUM_AND_ABOVE",
+        },
+      ],
+    };
+
+    const res = await fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
     });
 
     if (!res.ok) {
       const errorText = await res.text();
-      let displayError = 'Something went wrong. Please try again later.';
-
-      if (res.status === 400 || res.status === 500) {
-        displayError = `⚠️ ${errorText || 'Failed to process your question.'}`;
-      } else if (res.status === 404) {
-        displayError = 'API not found. This feature requires deployment or running with the Azure SWA CLI locally.';
-      }
-
-      messages.value.push({ role: 'assistant', content: displayError });
+      messages.value.push({ role: 'assistant', content: `⚠️ Failed to process your question: ${errorText}` });
     } else {
-      const reply = await res.text();
-      messages.value.push({ role: 'assistant', content: reply });
+      const data = await res.json();
+      if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+        const reply = data.candidates[0].content.parts[0].text;
+        messages.value.push({ role: 'assistant', content: reply });
+      } else if (data.promptFeedback) {
+        messages.value.push({ role: 'assistant', content: '⚠️ Response blocked by safety filters.' });
+      } else {
+        messages.value.push({ role: 'assistant', content: '⚠️ Unexpected response format.' });
+      }
     }
   } catch (err) {
     console.error('Chat API error:', err);
-    if (err instanceof TypeError && err.message.includes('fetch')) {
-      messages.value.push({
-        role: 'assistant',
-        content: '⚠️ Unable to reach the chat server. This feature is available once deployed, or you can test locally by installing `@azure/static-web-apps-cli` and running `swa start app --api-location api` alongside `npm run dev`.',
-      });
-    } else {
-      messages.value.push({ role: 'assistant', content: '⚠️ Something went wrong. Please try again.' });
-    }
+    messages.value.push({ role: 'assistant', content: '⚠️ Something went wrong. Please try again.' });
   } finally {
     isTyping.value = false;
     void nextTick(scrollToBottom);
