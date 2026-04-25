@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Navbar from "./components/Navbar.vue";
+import FloatingChat from "./components/shared/FloatingChat.vue";
 import { templateConfig } from "./config/templateConfig";
 
 const isMobile = window.innerWidth < 640;
@@ -9,6 +10,7 @@ const isMobile = window.innerWidth < 640;
   <div class="bg-custom-dotted min-h-screen h-full">
     <Navbar class="max-w-6xl w-11/12 mx-auto" />
     <router-view class="max-w-7xl w-11/12 mx-auto" />
+    <FloatingChat />
   </div>
   <footer class="footer footer-center text-base-content p-4 pt-8">
     <aside>
