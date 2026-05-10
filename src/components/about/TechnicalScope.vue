@@ -44,7 +44,7 @@ const toolkitSections = [
 <style scoped>
 .card-title {
   font-family: "PPEN";
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
   font-size: 1.5rem;
   margin-top: 5px;
