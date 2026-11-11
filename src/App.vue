@@ -3,6 +3,7 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 import Navbar from "./components/Navbar.vue";
 import FloatingChat from "./components/shared/FloatingChat.vue";
+import RobotMascot from "./components/shared/RobotMascot.vue";
 import { templateConfig } from "./config/templateConfig";
 
 const route = useRoute();
@@ -39,6 +40,7 @@ const currentYear = new Date().getFullYear();
     </footer>
 
     <FloatingChat />
+    <RobotMascot />
   </div>
 </template>
 

@@ -43,7 +43,7 @@ onUnmounted(() => {
   <header class="site-header">
     <div class="site-nav-shell">
       <RouterLink
-        :to="{ path: '/', hash: '#about' }"
+        :to="{ path: '/', hash: '#resume-website' }"
         class="site-wordmark"
         aria-label="Jatin Aneja home"
         @click="closeMenu"
