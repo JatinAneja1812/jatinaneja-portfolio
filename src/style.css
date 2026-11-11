@@ -2,68 +2,106 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .bg-custom-dotted {
-    background-color: rgba(251, 250, 244, 1);
-    background-size: 15px 15px;
-  } */
+@font-face {
+  font-family: "PPEN";
+  src: local("Arial");
+  font-weight: 400;
+  font-style: normal;
+}
 
-  :root {
-    --grain-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
-  }
+@font-face {
+  font-family: "PPEN";
+  src: local("Arial Bold");
+  font-weight: 700;
+  font-style: normal;
+}
 
-  .card rounded-md{
-    background-color: rgba(251, 250, 244, 1);
-  }
+@font-face {
+  font-family: "FKGN";
+  src: local("Arial");
+  font-weight: 400;
+  font-style: normal;
+}
 
-  .font-ppen {
-    font-family: 'PPEN';
-  }
+@font-face {
+  font-family: "FKGN";
+  src: local("Arial Bold");
+  font-weight: 700;
+  font-style: normal;
+}
 
-  .font-ppen-thin {
-    font-weight: 100;
-  }
+:root {
+  color-scheme: light;
+  font-family: "FKGN", Arial, Helvetica, sans-serif;
+  color: #12353b;
+  background: #fcfaf7;
 
-  .font-ppen-normal {
-    font-weight: normal;
-  }
+  --grain-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
+}
 
-  .font-ppen-bold {
-    font-weight: bold;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-  .font-ppen-italic {
-    font-style: italic;
-  }
+body {
+  min-width: 320px;
+  margin: 0;
+  font-family: "FKGN", Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
 
-  .font-ppen-normal-style {
-    font-style: normal;
-  }
+#app {
+  min-height: 100vh;
+}
 
-  .font-ppen-thin-italic {
-    font-weight: 100;
-    font-style: italic;
-  }
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
 
-  .font-ppen-bold-italic {
-    font-weight: bold;
-    font-style: italic;
-  }
+img {
+  max-width: 100%;
+}
 
-  @font-face {
-    font-family: 'PPEN';
-    src: local('Arial');
-    font-weight: 100 900;
-    font-style: normal italic;
-  }
+::selection {
+  color: #12353b;
+  background: #ffd2a6;
+}
 
-  @font-face {
-    font-family: 'FKGN';
-    src: local('Arial');
-    font-weight: 100 900;
-    font-style: normal italic;
-  }
+.font-ppen {
+  font-family: "PPEN", Arial, Helvetica, sans-serif;
+}
 
- 
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-  }
+.font-ppen-thin {
+  font-weight: 100;
+}
+
+.font-ppen-normal {
+  font-weight: 400;
+}
+
+.font-ppen-bold {
+  font-weight: 700;
+}
+
+.font-ppen-italic {
+  font-style: italic;
+}
+
+.font-ppen-normal-style {
+  font-style: normal;
+}
+
+.font-ppen-thin-italic {
+  font-weight: 100;
+  font-style: italic;
+}
+
+.font-ppen-bold-italic {
+  font-weight: 700;
+  font-style: italic;
+}

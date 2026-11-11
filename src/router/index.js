@@ -1,33 +1,57 @@
-// src/router/index.ts
-import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import About from '../views/About.vue'
-import Blog from '../views/Blog.vue'
-import PostDetail from '../components/blog/[slug].vue'
+import {
+  createRouter,
+  createWebHashHistory,
+} from "vue-router";
+
+import Website from "../views/Website.vue";
+import Blog from "../views/Blog.vue";
+import PostDetail from "../components/blog/[slug].vue";
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/about', component: About },
-  { path: '/blog', component: Blog },
   {
-    path: '/blog/:slug',
-    name: 'BlogPostDetail',
+    path: "/",
+    alias: "/resume-website",
+    name: "Resume",
+    component: Website,
+  },
+  {
+    path: "/blog",
+    name: "Blog",
+    component: Blog,
+  },
+  {
+    path: "/blog/:slug",
+    name: "BlogPostDetail",
     component: PostDetail,
   },
-]
+];
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
-  routes,
-  scrollBehavior(to, from, savedPosition) {
-    if (to.hash) {
-      return { selector: to.hash }
-    } else if (savedPosition) {
-      return savedPosition
-    } else {
-      return { left: 0, top: 0 }
-    }
-  },
-})
 
-export default router
+  routes,
+
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+
+    if (to.hash) {
+      const reducedMotion =
+        typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      return {
+        el: to.hash,
+        behavior: reducedMotion ? "auto" : "smooth",
+      };
+    }
+
+    return {
+      left: 0,
+      top: 0,
+    };
+  },
+});
+
+export default router;

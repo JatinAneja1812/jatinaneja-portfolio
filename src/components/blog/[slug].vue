@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref, computed, nextTick, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { fetchPost } from '@/services/blogService';
+import { fetchPost } from '../../services/blogService';
 import { marked } from 'marked';
-import TableOfContents from '@/components/shared/TableOfContents.vue';
+import TableOfContents from '../../components/shared/TableOfContents.vue';
 
 const mathBlockExtension = {
   name: 'mathBlock',
-  level: 'block',
+  level: 'block' as const,
   start(src: string) {
     return src.indexOf('$$');
   },
@@ -30,7 +30,7 @@ const mathBlockExtension = {
 
 const mathInlineExtension = {
   name: 'mathInline',
-  level: 'inline',
+  level: 'inline' as const,
   start(src: string) {
     return src.indexOf('$');
   },
@@ -108,6 +108,12 @@ const fixAlignAttributes = (markdown: string) => {
   );
 };
 
+type MathJaxWindow = Window & typeof globalThis & {
+  MathJax?: {
+    typesetPromise?: (elements: Element[]) => Promise<void>;
+  };
+};
+
 const renderedMarkdown = computed(() => {
   const processedMarkdown = fixAlignAttributes(post.value.content.markdown);
   return marked.parse(processedMarkdown);
@@ -115,8 +121,11 @@ const renderedMarkdown = computed(() => {
 
 watch(renderedMarkdown, async () => {
   await nextTick();
-  if (window.MathJax && window.MathJax.typesetPromise) {
-    window.MathJax.typesetPromise([document.querySelector('.prose')]).catch((err: unknown) => console.error(err));
+  const mathJaxWindow = window as MathJaxWindow;
+  const proseElement = document.querySelector('.prose');
+
+  if (mathJaxWindow.MathJax?.typesetPromise && proseElement) {
+    mathJaxWindow.MathJax.typesetPromise([proseElement]).catch((err: unknown) => console.error(err));
   }
 });
 </script>
