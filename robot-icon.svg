@@ -1,0 +1,55 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  fill="none"
+>
+  <!-- Rounded background -->
+  <rect width="64" height="64" rx="16" fill="#f8f9f6"/>
+
+  <!-- Antenna -->
+  <path
+    d="M32 17V10"
+    stroke="#153a3b"
+    stroke-width="3"
+    stroke-linecap="round"
+  />
+  <circle cx="32" cy="8" r="4" fill="#b77a50"/>
+
+  <!-- Side panels -->
+  <rect x="6" y="27" width="7" height="15" rx="3" fill="#739b7d"/>
+  <rect x="51" y="27" width="7" height="15" rx="3" fill="#739b7d"/>
+
+  <!-- Head -->
+  <rect
+    x="11"
+    y="17"
+    width="42"
+    height="34"
+    rx="11"
+    fill="#d5e6d8"
+    stroke="#153a3b"
+    stroke-width="2"
+  />
+
+  <!-- Face screen -->
+  <rect
+    x="17"
+    y="23"
+    width="30"
+    height="22"
+    rx="7"
+    fill="#153a3b"
+  />
+
+  <!-- Eyes -->
+  <rect x="23" y="28" width="5" height="7" rx="2.5" fill="#d5e6d8"/>
+  <rect x="36" y="28" width="5" height="7" rx="2.5" fill="#d5e6d8"/>
+
+  <!-- Smile -->
+  <path
+    d="M28 38Q32 42 36 38"
+    stroke="#d5e6d8"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+</svg>
