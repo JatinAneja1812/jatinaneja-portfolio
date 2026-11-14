@@ -1,10 +1,10 @@
 module.exports = async function (context, req) {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.VITE_GEMINI_API_KEY;
 
   if (!apiKey) {
     context.res = {
       status: 500,
-      body: "GEMINI_API_KEY is not configured in environment variables.",
+      body: "VITE_GEMINI_API_KEY is not configured in environment variables.",
     };
     return;
   }
