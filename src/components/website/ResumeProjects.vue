@@ -13,6 +13,7 @@ function handleDetails(event: Event, id: Project["id"]) {
   emit("refresh-layout");
 }
 </script>
+
 <template>
   <!-- PROJECTS -->
         <section
