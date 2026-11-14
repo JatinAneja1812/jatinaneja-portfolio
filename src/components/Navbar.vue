@@ -3,6 +3,7 @@ import { onMounted, onUnmounted, ref, watch } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import { ArrowUpRight, Menu, X } from "@lucide/vue";
 import { templateConfig } from "../config/templateConfig";
+import ThemeToggle from "./shared/ThemeToggle.vue";
 
 const route = useRoute();
 const menuOpen = ref(false);
@@ -73,7 +74,7 @@ onUnmounted(() => {
           <ArrowUpRight :size="13" aria-hidden="true" />
         </RouterLink>
       </nav>
-
+      <ThemeToggle />
       <a
         :href="`mailto:${templateConfig.contact.email}`"
         class="site-nav-contact"

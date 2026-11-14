@@ -11,6 +11,7 @@
   "dependencies": {
     "@lucide/vue": "^1.70.0",
     "@phosphor-icons/vue": "^2.2.1",
+    "devicon": "^2.18.0",
     "gsap": "^3.15.1",
     "marked": "^15.0.4",
     "swiper": "^12.1.1",
@@ -22,6 +23,7 @@
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.5.1",
     "@types/webpack-env": "^1.18.5",
+    "@vitejs/plugin-vue": "^6.0.10",
     "@vue/compiler-sfc": "^3.5.8",
     "autoprefixer": "^10.4.20",
     "daisyui": "^4.12.10",
@@ -29,7 +31,6 @@
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.3",
     "vite": "^8.3.7",
-    "@vitejs/plugin-vue": "^6.0.10",
     "vue-tsc": "^2.1.6"
   },
   "overrides": {
